@@ -35,12 +35,13 @@ fun Task5() {
     val color by
     infiniteTransition.animateColor(
         initialValue = Color(0xff0E402D),
-        targetValue = Color(0xff295135),
+        targetValue = Color(0xffD6FFB7),
         animationSpec =
             infiniteRepeatable(
-                 animation = tween(1000, easing = LinearEasing),
+                 animation = tween(3000, easing = LinearEasing),
                 repeatMode = RepeatMode.Reverse,
             ),
+        label="color"
     )
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -53,12 +54,22 @@ fun Task5() {
             Box(
                 modifier = Modifier.size(80.dp)
                     .clip(CircleShape)
+                    .background(color)
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // TODO: Optional -- Add pulsing effect to text.alpha
-            Text("Loading...")
+            val alpha by infiniteTransition.animateColor(
+                initialValue=Color(0x000f0f0f),
+                targetValue = Color(0xff0f0f0f),
+                animationSpec =
+                    infiniteRepeatable(
+                        animation = tween(1000, easing = LinearEasing),
+                        repeatMode = RepeatMode.Reverse,
+                    ),
+                label="alpha"
+            )
+            Text("Loading...", color=alpha)
         }
     }
 }
