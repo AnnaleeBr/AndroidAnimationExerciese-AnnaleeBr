@@ -21,6 +21,11 @@ import androidx.compose.ui.unit.sp
 fun Task1() {
     // Track whether the composable has been composed
     var isVisible by remember { mutableStateOf(false) }
+    val alpha by animateFloatAsState(if (isVisible) 1f else 0f,
+        animationSpec = tween(durationMillis = 5_000))
+    LaunchedEffect(Unit){
+        isVisible = true
+    }
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -29,7 +34,7 @@ fun Task1() {
         Text(
             text = "Hello Android",
             fontSize = 24.sp,
-            // TODO add fade-in animation here
+            modifier = Modifier.alpha(alpha)
         )
     }
 }

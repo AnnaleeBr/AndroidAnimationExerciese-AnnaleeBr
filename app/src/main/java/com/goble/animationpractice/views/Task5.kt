@@ -30,6 +30,18 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Task5() {
+    val infiniteTransition = rememberInfiniteTransition()
+
+    val color by
+    infiniteTransition.animateColor(
+        initialValue = Color(0xff0E402D),
+        targetValue = Color(0xff295135),
+        animationSpec =
+            infiniteRepeatable(
+                 animation = tween(1000, easing = LinearEasing),
+                repeatMode = RepeatMode.Reverse,
+            ),
+    )
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -41,7 +53,6 @@ fun Task5() {
             Box(
                 modifier = Modifier.size(80.dp)
                     .clip(CircleShape)
-                    // TODO Add infinite transition between two colors
             )
 
             Spacer(modifier = Modifier.height(16.dp))
